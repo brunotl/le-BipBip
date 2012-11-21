@@ -17,6 +17,10 @@ You can get these software from their upstream webpage:
   http://sourceforge.net/apps/mediawiki/mspgcc/index.php?title=MSPGCC_Wiki (you
   can find instructions for building everything from source)
 
+* Unbuntu 12.04 : msp430-gdb from Oneiric repository don't work.
+  you need install from source. cf: build-mspgcc.scr
+
+
 Getting the source
 ==================
 
@@ -90,3 +94,32 @@ If instead, you have an error, like:
 
 You may need to fix permission on the jtag USB device (to be sure, try to prefix
 the command with ''sudo'').
+
+mspdebug : rf2500: can't open device: Permission denied
+==============================================
+
+Create new udev file with the correct id.
+
+	$ mspdebug  --usb-list
+
+find this line: 		 002:004 0451:f432 eZ430-RF2500 [serial: xxxxxxxxxxxxxxxx]
+the id 00x:00x corresponds to id of new udev files rules
+
+no you can create file
+
+	$ sudo nano /etc/udev/rules.d/24-ti-launchpad.rules
+
+Add this line into file :
+
+	ATTRS{idVendor}=="0451", ATTRS{idProduct}=="f432", MODE="0660", GROUP="dialout"
+
+saved and rebooted, and it seems to be working.
+
+Eclipse Juno debug configuration
+======================
+* install plugin : "Eclipse C/C++ GDB hardware debugging"
+
+config :  http://springuin.nl/articles/launchpadwindows
+
+
+

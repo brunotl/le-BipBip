@@ -42,7 +42,7 @@
 //#define 	VARIO_TEST_RANGE_NEGATIVE
 //#define 	CHARGE_PUMP_DEMO
 //#define 	SENSOR_DEBUG
-//#define 	NMEA_OUTPUT_ENABLE
+#define 	NMEA_OUTPUT_ENABLE
 //#define 	DISABLE_VARIO
 //#define 	POWER_DISABLE_ADC
 /*******************************************************/
